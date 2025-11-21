@@ -27,10 +27,10 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-linear-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
                 <FaImage className="text-white text-sm" />
               </div>
-              <span className="text-xl font-bold">ImageAI</span>
+              <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageAI</span>
             </div>
             <div className="hidden md:flex items-center gap-6">
               <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
@@ -44,47 +44,120 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-32">
-        <div className="container mx-auto px-4 text-center">
-          <Badge variant="secondary" className="mb-6">
-            <MdAutoAwesome className="mr-1" />
-            Powered by GPT-4 Vision
-          </Badge>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-linear-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
-            Transform Your Images with AI Magic
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Turn any photo into stunning Ghibli-style artwork or action-packed illustrations. 
-            Professional AI image transformation in seconds.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="text-lg px-8">
-              <FaRocket className="mr-2" />
-              Start Creating
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8">
-              <FaPlay className="mr-2" />
-              Watch Demo
-            </Button>
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-r from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-linear-to-r from-emerald-400/20 to-teal-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-indigo-400/10 to-purple-600/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-4 h-4 bg-cyan-400 rounded-full animate-bounce delay-300"></div>
+          <div className="absolute top-40 right-20 w-3 h-3 bg-emerald-400 rounded-full animate-bounce delay-700"></div>
+          <div className="absolute bottom-40 left-20 w-5 h-5 bg-indigo-400 rounded-full animate-bounce delay-1000"></div>
+          <div className="absolute bottom-20 right-10 w-3 h-3 bg-teal-400 rounded-full animate-bounce delay-500"></div>
+          <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping delay-200"></div>
+          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping delay-800"></div>
+        </div>
+
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="animate-fade-in-up">
+            <Badge variant="secondary" className="mb-6 bg-linear-to-r from-cyan-500/20 to-blue-500/20 border-cyan-500/30 text-cyan-300 hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300">
+              <MdAutoAwesome className="mr-1 animate-spin-slow" />
+              Powered by GPT-4 Vision
+            </Badge>
           </div>
           
-          {/* Hero Image Placeholder */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="bg-linear-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-8 border border-border/50">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                <div className="bg-muted rounded-lg aspect-square flex items-center justify-center">
-                  <div className="text-center">
-                    <MdPhotoCamera className="text-4xl text-muted-foreground mb-2 mx-auto" />
-                    <p className="text-sm text-muted-foreground">Original Photo</p>
+          <div className="animate-fade-in-up delay-200">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent animate-gradient-x">
+              Transform Your Images with AI Magic
+            </h1>
+          </div>
+          
+          <div className="animate-fade-in-up delay-400">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              Turn any photo into stunning Ghibli-style artwork or action-packed illustrations. 
+              Professional AI image transformation in seconds.
+            </p>
+          </div>
+          
+          <div className="animate-fade-in-up delay-600">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button size="lg" className="text-lg px-8 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25">
+                <FaRocket className="mr-2" />
+                Start Creating
+              </Button>
+              <Button size="lg" variant="outline" className="text-lg px-8 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 transform hover:scale-105 transition-all duration-300">
+                <FaPlay className="mr-2" />
+                Watch Demo
+              </Button>
+            </div>
+          </div>
+          
+          {/* Enhanced Hero Image Showcase */}
+          <div className="animate-fade-in-up delay-800">
+            <div className="relative max-w-5xl mx-auto">
+              {/* Floating decoration elements */}
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-linear-to-r from-emerald-400 to-teal-500 rounded-full animate-float opacity-60"></div>
+              <div className="absolute -top-4 -right-8 w-8 h-8 bg-linear-to-r from-indigo-400 to-purple-500 rounded-full animate-float delay-300 opacity-60"></div>
+              <div className="absolute -bottom-6 -left-8 w-10 h-10 bg-linear-to-r from-cyan-400 to-blue-500 rounded-full animate-float delay-700 opacity-60"></div>
+              <div className="absolute -bottom-4 -right-6 w-6 h-6 bg-linear-to-r from-teal-400 to-emerald-500 rounded-full animate-float delay-1000 opacity-60"></div>
+              
+              <div className="bg-linear-to-br from-cyan-500/10 via-blue-500/10 to-indigo-500/10 rounded-3xl p-8 border border-cyan-500/20 backdrop-blur-sm shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 transform hover:scale-[1.02]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                  {/* Original Image */}
+                  <div className="group">
+                    <div className="bg-linear-to-br from-slate-800 to-slate-900 rounded-xl aspect-square flex items-center justify-center border border-slate-700 transform group-hover:scale-105 transition-all duration-300 shadow-lg">
+                      <div className="text-center">
+                        <div className="relative">
+                          <MdPhotoCamera className="text-5xl text-slate-400 mb-3 mx-auto animate-pulse" />
+                          <div className="absolute -top-2 -right-2 w-4 h-4 bg-emerald-400 rounded-full animate-ping"></div>
+                        </div>
+                        <p className="text-sm text-slate-400 font-medium">Original Photo</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Arrow with animation */}
+                  <div className="flex justify-center">
+                    <div className="relative">
+                      <FaArrowRight className="text-3xl text-cyan-400 animate-pulse" />
+                      <div className="absolute inset-0 text-3xl text-cyan-400 animate-ping opacity-30">
+                        <FaArrowRight />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* AI Transformed */}
+                  <div className="group">
+                    <div className="bg-linear-to-br from-cyan-500/20 via-blue-500/20 to-indigo-500/20 rounded-xl aspect-square flex items-center justify-center border border-cyan-500/40 transform group-hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/20">
+                      <div className="text-center">
+                        <div className="relative">
+                          <FaMagic className="text-5xl text-cyan-400 mb-3 mx-auto animate-bounce" />
+                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-indigo-400 rounded-full animate-ping"></div>
+                          <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-teal-400 rounded-full animate-ping delay-300"></div>
+                        </div>
+                        <p className="text-sm text-cyan-300 font-medium">AI Transformed</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-center">
-                  <FaArrowRight className="text-2xl text-muted-foreground" />
-                </div>
-                <div className="bg-linear-to-br from-purple-500/20 to-pink-500/20 rounded-lg aspect-square flex items-center justify-center border border-purple-500/30">
-                  <div className="text-center">
-                    <FaMagic className="text-4xl text-purple-400 mb-2 mx-auto" />
-                    <p className="text-sm text-purple-300">AI Transformed</p>
+                
+                {/* Stats or features below */}
+                <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+                  <div className="animate-fade-in-up delay-1000">
+                    <div className="text-2xl font-bold text-cyan-400">2.5s</div>
+                    <div className="text-xs text-muted-foreground">Avg Process Time</div>
+                  </div>
+                  <div className="animate-fade-in-up delay-1200">
+                    <div className="text-2xl font-bold text-emerald-400">4K</div>
+                    <div className="text-xs text-muted-foreground">HD Quality</div>
+                  </div>
+                  <div className="animate-fade-in-up delay-1400">
+                    <div className="text-2xl font-bold text-indigo-400">99%</div>
+                    <div className="text-xs text-muted-foreground">Satisfaction</div>
                   </div>
                 </div>
               </div>
@@ -267,10 +340,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-linear-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
                 <FaImage className="text-white text-sm" />
               </div>
-              <span className="text-xl font-bold">ImageAI</span>
+              <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageAI</span>
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
