@@ -106,18 +106,18 @@ export default function Home() {
           <div className="animate-fade-in-up">
             <Badge variant="secondary" className="mb-6 bg-linear-to-r from-cyan-500/20 to-blue-500/20 border-cyan-500/30 text-cyan-300 hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300">
               <MdAutoAwesome className="mr-1 animate-spin-slow" />
-              AI-Powered Transformations
+              Powered by GPT-4 Vision
             </Badge>
           </div>
           
           <div className="animate-fade-in-up delay-200">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent animate-gradient-x">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent animate-gradient-x">
               Transform Your Images with AI Magic
             </h1>
           </div>
           
           <div className="animate-fade-in-up delay-400">
-            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               Turn any photo into stunning Ghibli-style artwork or action-packed illustrations. 
               Professional AI image transformation in seconds.
             </p>
@@ -154,10 +154,10 @@ export default function Home() {
       <section id="examples" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               See the Magic in Action
             </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Transform ordinary photos into extraordinary Ghibli-style artwork with our AI technology
             </p>
           </div>
@@ -170,41 +170,14 @@ export default function Home() {
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {examples.map((example, index) => (
-                  <div key={index} className="w-full shrink-0">
+                  <div key={index} className="w-full flex-shrink-0">
                     <Card className="mx-4 overflow-hidden border-0 shadow-lg">
                       <div className="relative">
-                        <div className={`aspect-video bg-linear-to-br ${example.gradient} flex items-center justify-center relative overflow-hidden`}>
-                          {/* Before Image */}
-                          <div className="absolute left-4 top-4 w-24 h-24 bg-slate-800 rounded-lg flex items-center justify-center border-2 border-slate-600">
-                            <MdPhotoCamera className="text-2xl text-slate-400" />
-                          </div>
-                          
-                          {/* Arrow */}
-                          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                            <div className="bg-white/90 rounded-full p-3 shadow-lg">
-                              <FaArrowRight className="text-slate-800 text-xl" />
-                            </div>
-                          </div>
-                          
-                          {/* After Image */}
-                          <div className="absolute right-4 top-4 w-24 h-24 bg-linear-to-br from-cyan-400/30 to-blue-500/30 rounded-lg flex items-center justify-center border-2 border-cyan-400/50 backdrop-blur-sm">
-                            <div className="text-center">
-                              <div className="w-8 h-8 bg-cyan-400 rounded-full mx-auto mb-1 animate-pulse"></div>
-                              <div className="text-xs text-cyan-300 font-medium">AI</div>
-                            </div>
-                          </div>
-                          
-                          {/* Background Pattern */}
-                          <div className="absolute inset-0 opacity-20">
-                            <div className="w-full h-full bg-linear-to-r from-transparent via-white/10 to-transparent transform skew-x-12 animate-pulse"></div>
-                          </div>
-                          
-                          {/* Category Icon */}
-                          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                            <div className="bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
-                              <span className="text-white text-sm font-medium">
-                                {example.title.split(' → ')[0]}
-                              </span>
+                        <div className={`aspect-video bg-linear-to-br ${example.gradient} flex items-center justify-center`}>
+                          <div className="text-center">
+                            <MdPhotoCamera className="text-6xl text-muted-foreground mb-4 mx-auto animate-pulse" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <FaArrowRight className="text-white text-3xl animate-pulse" />
                             </div>
                           </div>
                         </div>

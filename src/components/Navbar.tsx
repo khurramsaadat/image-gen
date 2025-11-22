@@ -90,7 +90,7 @@ export default function Navbar() {
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-50 md:hidden">
-            <div className="fixed inset-0 bg-background/98 backdrop-blur-lg">
+            <div className="fixed inset-0 bg-background backdrop-blur-lg">
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
                 <div className="flex items-center justify-between p-4 border-b border-border/40">
@@ -116,21 +116,21 @@ export default function Navbar() {
                   <a 
                     href="/#examples" 
                     onClick={closeMobileMenu}
-                    className="text-2xl font-semibold text-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up bg-muted/50 px-8 py-4 rounded-xl backdrop-blur-sm border border-border/30"
+                    className="text-2xl font-semibold text-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up bg-card px-8 py-4 rounded-xl border border-border shadow-lg"
                   >
                     Examples
                   </a>
                   <a 
                     href="/#features" 
                     onClick={closeMobileMenu}
-                    className="text-2xl font-semibold text-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up delay-100 bg-muted/50 px-8 py-4 rounded-xl backdrop-blur-sm border border-border/30"
+                    className="text-2xl font-semibold text-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up delay-100 bg-card px-8 py-4 rounded-xl border border-border shadow-lg"
                   >
                     Features
                   </a>
                   <Link 
                     href="/pricing" 
                     onClick={closeMobileMenu}
-                    className="text-2xl font-semibold text-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up delay-200 bg-muted/50 px-8 py-4 rounded-xl backdrop-blur-sm border border-border/30"
+                    className="text-2xl font-semibold text-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up delay-200 bg-card px-8 py-4 rounded-xl border border-border shadow-lg"
                   >
                     Pricing
                   </Link>
