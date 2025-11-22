@@ -11,6 +11,7 @@ import {
   SignedOut
 } from "@clerk/nextjs";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -35,32 +36,38 @@ export default function Home() {
     {
       title: "Portrait → Ghibli Character",
       description: "Transform portraits into magical Ghibli-style characters with dreamy backgrounds",
-      gradient: "from-cyan-500/20 to-blue-500/20"
+      gradient: "from-cyan-500/20 to-blue-500/20",
+      image: "/portrait-example.jpg"
     },
     {
       title: "Landscape → Magical World", 
       description: "Turn ordinary landscapes into enchanted Ghibli-style worlds with floating islands",
-      gradient: "from-emerald-500/20 to-teal-500/20"
+      gradient: "from-emerald-500/20 to-teal-500/20",
+      image: "/landscape-example.jpg"
     },
     {
       title: "Pet → Magical Companion",
       description: "Transform your pets into adorable Ghibli-style magical creatures and companions", 
-      gradient: "from-purple-500/20 to-indigo-500/20"
+      gradient: "from-purple-500/20 to-indigo-500/20",
+      image: "/pet-example.jpg"
     },
     {
       title: "Urban → Fantasy City",
       description: "Convert modern cityscapes into fantastical Ghibli-inspired floating cities",
-      gradient: "from-orange-500/20 to-red-500/20"
+      gradient: "from-orange-500/20 to-red-500/20",
+      image: "/urban-example.jpg"
     },
     {
       title: "Nature → Enchanted Forest",
       description: "Transform natural scenes into mystical Ghibli-style enchanted forests",
-      gradient: "from-green-500/20 to-emerald-500/20"
+      gradient: "from-green-500/20 to-emerald-500/20",
+      image: "/nature-example.jpg"
     },
     {
       title: "Action → Epic Adventure",
       description: "Turn action shots into epic Ghibli-style adventure scenes with dynamic effects",
-      gradient: "from-red-500/20 to-pink-500/20"
+      gradient: "from-red-500/20 to-pink-500/20",
+      image: "/action-example.jpg"
     }
   ];
 
@@ -167,10 +174,21 @@ export default function Home() {
                   <div key={index} className="w-full shrink-0">
                     <Card className="mx-4 overflow-hidden border-0 shadow-lg">
                       <div className="relative">
-                        <div className={`aspect-video bg-linear-to-br ${example.gradient} flex items-center justify-center relative overflow-hidden`}>
+                        <div className="aspect-video relative overflow-hidden">
+                          {/* Background Image */}
+                          <Image 
+                            src={example.image} 
+                            alt={example.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                          {/* Overlay */}
+                          <div className={`absolute inset-0 bg-linear-to-br ${example.gradient} mix-blend-overlay`}></div>
+                          
                           {/* Before Image */}
-                          <div className="absolute left-4 top-4 w-24 h-24 bg-slate-800 rounded-lg flex items-center justify-center border-2 border-slate-600">
-                            <MdPhotoCamera className="text-2xl text-slate-400" />
+                          <div className="absolute left-4 top-4 w-24 h-24 bg-black/60 backdrop-blur-sm rounded-lg flex items-center justify-center border-2 border-white/30">
+                            <MdPhotoCamera className="text-2xl text-white/80" />
                           </div>
                           
                           {/* Arrow */}
