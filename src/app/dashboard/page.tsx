@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FaImage, FaUpload, FaHistory, FaSettings } from "react-icons/fa";
+import { FaImage, FaUpload, FaHistory, FaCog } from "react-icons/fa";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -62,7 +62,7 @@ export default async function DashboardPage() {
           <Card>
             <CardHeader>
               <div className="w-16 h-16 bg-linear-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FaSettings className="text-white text-xl" />
+                <FaCog className="text-white text-xl" />
               </div>
               <CardTitle>Settings</CardTitle>
               <CardDescription>
