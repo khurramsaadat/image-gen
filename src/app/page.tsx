@@ -37,37 +37,37 @@ export default function Home() {
       title: "Portrait → Ghibli Character",
       description: "Transform portraits into magical Ghibli-style characters with dreamy backgrounds",
       gradient: "from-cyan-500/20 to-blue-500/20",
-      image: "/portrait-example.jpg"
+      image: "/assets/portrait-example.jpg"
     },
     {
       title: "Landscape → Magical World", 
       description: "Turn ordinary landscapes into enchanted Ghibli-style worlds with floating islands",
       gradient: "from-emerald-500/20 to-teal-500/20",
-      image: "/landscape-example.jpg"
+      image: "/assets/landscape-example.jpg"
     },
     {
       title: "Pet → Magical Companion",
       description: "Transform your pets into adorable Ghibli-style magical creatures and companions", 
       gradient: "from-purple-500/20 to-indigo-500/20",
-      image: "/pet-example.jpg"
+      image: "/assets/pet-example.jpg"
     },
     {
       title: "Urban → Fantasy City",
       description: "Convert modern cityscapes into fantastical Ghibli-inspired floating cities",
       gradient: "from-orange-500/20 to-red-500/20",
-      image: "/urban-example.jpg"
+      image: "/assets/urban-example.jpg"
     },
     {
       title: "Nature → Enchanted Forest",
       description: "Transform natural scenes into mystical Ghibli-style enchanted forests",
       gradient: "from-green-500/20 to-emerald-500/20",
-      image: "/nature-example.jpg"
+      image: "/assets/nature-example.jpg"
     },
     {
       title: "Action → Epic Adventure",
       description: "Turn action shots into epic Ghibli-style adventure scenes with dynamic effects",
       gradient: "from-red-500/20 to-pink-500/20",
-      image: "/action-example.jpg"
+      image: "/assets/action-example.jpg"
     }
   ];
 
