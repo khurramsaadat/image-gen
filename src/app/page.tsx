@@ -3,6 +3,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { 
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from "@clerk/nextjs";
+import Link from "next/link";
+import { 
   FaImage, 
   FaMagic, 
   FaRocket, 
@@ -36,8 +44,23 @@ export default function Home() {
               <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
               <a href="#examples" className="text-muted-foreground hover:text-foreground transition-colors">Examples</a>
               <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
-              <Button variant="outline" size="sm">Sign In</Button>
-              <Button size="sm">Get Started</Button>
+              <SignedOut>
+                <SignInButton>
+                  <Button variant="outline" size="sm">Sign In</Button>
+                </SignInButton>
+                <SignUpButton>
+                  <Button size="sm">Get Started</Button>
+                </SignUpButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton 
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-8 h-8"
+                    }
+                  }}
+                />
+              </SignedIn>
             </div>
           </div>
         </div>
@@ -85,10 +108,22 @@ export default function Home() {
           
           <div className="animate-fade-in-up delay-600">
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" className="text-lg px-8 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25">
-                <FaRocket className="mr-2" />
-                Start Creating
-              </Button>
+              <SignedOut>
+                <SignUpButton>
+                  <Button size="lg" className="text-lg px-8 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25">
+                    <FaRocket className="mr-2" />
+                    Start Creating
+                  </Button>
+                </SignUpButton>
+              </SignedOut>
+              <SignedIn>
+                <Link href="/dashboard">
+                  <Button size="lg" className="text-lg px-8 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25">
+                    <FaRocket className="mr-2" />
+                    Start Creating
+                  </Button>
+                </Link>
+              </SignedIn>
               <Button size="lg" variant="outline" className="text-lg px-8 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 transform hover:scale-105 transition-all duration-300">
                 <FaPlay className="mr-2" />
                 Watch Demo
@@ -310,13 +345,24 @@ export default function Home() {
             Join thousands of creators who are already using AI to bring their images to life
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Input 
-              placeholder="Enter your email address" 
-              className="max-w-sm"
-            />
-            <Button size="lg" className="px-8">
-              Get Started Free
-            </Button>
+            <SignedOut>
+              <Input 
+                placeholder="Enter your email address" 
+                className="max-w-sm"
+              />
+              <SignUpButton>
+                <Button size="lg" className="px-8">
+                  Get Started Free
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button size="lg" className="px-8">
+                  Go to Dashboard
+                </Button>
+              </Link>
+            </SignedIn>
           </div>
           <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
