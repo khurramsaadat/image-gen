@@ -166,8 +166,8 @@ export default function Home() {
           {/* Carousel */}
           <div className="relative max-w-6xl mx-auto">
             <div className="flex items-center justify-center">
-              {/* Previous (Half) Image */}
-              <div className="w-1/4 opacity-50 scale-75 transition-all duration-500">
+              {/* Previous (Half) Image - Hidden on Mobile */}
+              <div className="hidden md:block w-1/4 opacity-50 scale-75 transition-all duration-500">
                 {examples[(currentSlide - 1 + examples.length) % examples.length] && (
                   <Card className="overflow-hidden border-0 shadow-lg">
                     <div className="relative aspect-video overflow-hidden">
@@ -184,8 +184,8 @@ export default function Home() {
                 )}
               </div>
 
-              {/* Current (Full) Image */}
-              <div className="w-1/2 mx-4 transition-all duration-500">
+              {/* Current (Full) Image - Full width on mobile, half width on desktop */}
+              <div className="w-full md:w-1/2 mx-4 transition-all duration-500">
                 {examples.map((example, index) => (
                   <div key={index} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
                     <Card className="overflow-hidden border-0 shadow-xl">
@@ -201,26 +201,6 @@ export default function Home() {
                           />
                           {/* Overlay */}
                           <div className={`absolute inset-0 bg-linear-to-br ${example.gradient} mix-blend-overlay`}></div>
-                          
-                          {/* Before Image */}
-                          <div className="absolute left-4 top-4 w-24 h-24 bg-black/60 backdrop-blur-sm rounded-lg flex items-center justify-center border-2 border-white/30">
-                            <MdPhotoCamera className="text-2xl text-white/80" />
-                          </div>
-                          
-                          {/* Arrow */}
-                          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                            <div className="bg-white/90 rounded-full p-3 shadow-lg">
-                              <FaArrowRight className="text-slate-800 text-xl" />
-                            </div>
-                          </div>
-                          
-                          {/* After Image */}
-                          <div className="absolute right-4 top-4 w-24 h-24 bg-linear-to-br from-cyan-400/30 to-blue-500/30 rounded-lg flex items-center justify-center border-2 border-cyan-400/50 backdrop-blur-sm">
-                            <div className="text-center">
-                              <div className="w-8 h-8 bg-cyan-400 rounded-full mx-auto mb-1 animate-pulse"></div>
-                              <div className="text-xs text-cyan-300 font-medium">AI</div>
-                            </div>
-                          </div>
                           
                           {/* Background Pattern */}
                           <div className="absolute inset-0 opacity-20">
@@ -246,8 +226,8 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* Next (Half) Image */}
-              <div className="w-1/4 opacity-50 scale-75 transition-all duration-500">
+              {/* Next (Half) Image - Hidden on Mobile */}
+              <div className="hidden md:block w-1/4 opacity-50 scale-75 transition-all duration-500">
                 {examples[(currentSlide + 1) % examples.length] && (
                   <Card className="overflow-hidden border-0 shadow-lg">
                     <div className="relative aspect-video overflow-hidden">

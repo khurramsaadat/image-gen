@@ -160,3 +160,13 @@ the carousel i want to see the photo with the description below and also want to
 
 favicon is still not showing on the browser tab. check
 ```
+
+## 28. Mobile Carousel Optimization
+```
+on desktop carousel is good but on mobile the carousel is not looking good so just show one pic at a time and remove the next and previous photos to appear at the same time on mobile view. keep the desktop as is
+```
+
+## 29. Clean Up Carousel Photos
+```
+remove the camrea and AI and right arrow on the photos
+```
