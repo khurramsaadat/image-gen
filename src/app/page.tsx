@@ -164,15 +164,31 @@ export default function Home() {
           </div>
           
           {/* Carousel */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="overflow-hidden rounded-2xl">
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
+          <div className="relative max-w-6xl mx-auto">
+            <div className="flex items-center justify-center">
+              {/* Previous (Half) Image */}
+              <div className="w-1/4 opacity-50 scale-75 transition-all duration-500">
+                {examples[(currentSlide - 1 + examples.length) % examples.length] && (
+                  <Card className="overflow-hidden border-0 shadow-lg">
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image 
+                        src={examples[(currentSlide - 1 + examples.length) % examples.length].image} 
+                        alt={examples[(currentSlide - 1 + examples.length) % examples.length].title}
+                        fill
+                        className="object-cover"
+                        sizes="25vw"
+                      />
+                      <div className={`absolute inset-0 bg-linear-to-br ${examples[(currentSlide - 1 + examples.length) % examples.length].gradient} mix-blend-overlay`}></div>
+                    </div>
+                  </Card>
+                )}
+              </div>
+
+              {/* Current (Full) Image */}
+              <div className="w-1/2 mx-4 transition-all duration-500">
                 {examples.map((example, index) => (
-                  <div key={index} className="w-full shrink-0">
-                    <Card className="mx-4 overflow-hidden border-0 shadow-lg">
+                  <div key={index} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
+                    <Card className="overflow-hidden border-0 shadow-xl">
                       <div className="relative">
                         <div className="aspect-video relative overflow-hidden">
                           {/* Background Image */}
@@ -221,13 +237,31 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
-                      <CardContent className="p-8 text-center">
+                      <CardContent className="p-6 text-center">
                         <h3 className="text-2xl font-semibold mb-4">{example.title}</h3>
                         <p className="text-muted-foreground text-lg">{example.description}</p>
                       </CardContent>
                     </Card>
                   </div>
                 ))}
+              </div>
+
+              {/* Next (Half) Image */}
+              <div className="w-1/4 opacity-50 scale-75 transition-all duration-500">
+                {examples[(currentSlide + 1) % examples.length] && (
+                  <Card className="overflow-hidden border-0 shadow-lg">
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image 
+                        src={examples[(currentSlide + 1) % examples.length].image} 
+                        alt={examples[(currentSlide + 1) % examples.length].title}
+                        fill
+                        className="object-cover"
+                        sizes="25vw"
+                      />
+                      <div className={`absolute inset-0 bg-linear-to-br ${examples[(currentSlide + 1) % examples.length].gradient} mix-blend-overlay`}></div>
+                    </div>
+                  </Card>
+                )}
               </div>
             </div>
             

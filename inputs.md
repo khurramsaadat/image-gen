@@ -122,3 +122,41 @@ make input.md and include all of my inputs form start till end of this app.
 ```
 my inputs should only includes the input that i write here
 ```
+
+## 22. Cleanup Request
+```
+you must remove all the images that are in .playwright has created.
+```
+
+## 23. Favicon Integration
+```
+i have added favicon files in public folder
+```
+
+## 24. Image Download and Organization
+```
+download free images in public folder and add them in the section "See the Magic in Action"  get the appropriate images for this section
+```
+
+## 25. Asset Organization
+```
+move all the images downloaded from unsplash to a folder "assets" and keep it as a sub folder of public
+```
+
+## 26. Current Issues and Updates
+```
+always update inputs.md keep a note of this.
+
+favicon is not showing - please check.
+
+photos in the carousel are not showing. show more than one photo at a time.
+
+push all code to my github repo.
+```
+
+## 27. Carousel Design Enhancement
+```
+the carousel i want to see the photo with the description below and also want to see half photo on the right and left. so during auto scroll we see the full photo while see the half photos on both sides. do you understand this or do you have nay questions.?
+
+favicon is still not showing on the browser tab. check
+```
