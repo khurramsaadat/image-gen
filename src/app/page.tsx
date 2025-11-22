@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+"use client";
+
 import { 
   SignInButton,
   SignUpButton,
@@ -10,6 +12,7 @@ import {
   UserButton
 } from "@clerk/nextjs";
 import Link from "next/link";
+import { useState } from "react";
 import { 
   FaImage, 
   FaMagic, 
@@ -18,7 +21,9 @@ import {
   FaStar, 
   FaArrowRight,
   FaPlay,
-  FaCheck
+  FaCheck,
+  FaBars,
+  FaTimes
 } from "react-icons/fa";
 import { 
   MdAutoAwesome, 
@@ -28,21 +33,31 @@ import {
 } from "react-icons/md";
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
       <nav className="border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
                 <FaImage className="text-white text-sm" />
               </div>
               <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGeneration</span>
-            </div>
+            </Link>
             <div className="hidden md:flex items-center gap-6">
-              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
               <a href="#examples" className="text-muted-foreground hover:text-foreground transition-colors">Examples</a>
+              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
               <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
               <SignedOut>
                 <SignInButton>
@@ -62,8 +77,105 @@ export default function Home() {
                 />
               </SignedIn>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={toggleMobileMenu}
+                className="text-foreground hover:text-cyan-400 transition-colors p-2"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? (
+                  <FaTimes className="text-xl" />
+                ) : (
+                  <FaBars className="text-xl" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 z-50 md:hidden">
+            <div className="fixed inset-0 bg-background/95 backdrop-blur-lg">
+              <div className="flex flex-col h-full">
+                {/* Mobile Header */}
+                <div className="flex items-center justify-between p-4 border-b border-border/40">
+                  <Link href="/" onClick={closeMobileMenu} className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
+                      <FaImage className="text-white text-sm" />
+                    </div>
+                    <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGeneration</span>
+                  </Link>
+                  <button
+                    onClick={closeMobileMenu}
+                    className="text-foreground hover:text-cyan-400 transition-colors p-2"
+                  >
+                    <FaTimes className="text-xl" />
+                  </button>
+                </div>
+
+                {/* Mobile Navigation Links */}
+                <div className="flex-1 flex flex-col justify-center items-center space-y-8 px-4">
+                  <a 
+                    href="#examples" 
+                    onClick={closeMobileMenu}
+                    className="text-2xl font-semibold text-muted-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up"
+                  >
+                    Examples
+                  </a>
+                  <a 
+                    href="#features" 
+                    onClick={closeMobileMenu}
+                    className="text-2xl font-semibold text-muted-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up delay-100"
+                  >
+                    Features
+          </a>
+          <a
+                    href="#pricing" 
+                    onClick={closeMobileMenu}
+                    className="text-2xl font-semibold text-muted-foreground hover:text-cyan-400 transition-all duration-300 animate-fade-in-up delay-200"
+                  >
+                    Pricing
+                  </a>
+                  
+                  {/* Mobile Auth Buttons */}
+                  <div className="flex flex-col gap-4 mt-8 animate-fade-in-up delay-300">
+                    <SignedOut>
+                      <SignInButton>
+                        <Button variant="outline" size="lg" className="w-48" onClick={closeMobileMenu}>
+                          Sign In
+                        </Button>
+                      </SignInButton>
+                      <SignUpButton>
+                        <Button size="lg" className="w-48 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700" onClick={closeMobileMenu}>
+                          Get Started
+                        </Button>
+                      </SignUpButton>
+                    </SignedOut>
+                    <SignedIn>
+                      <Link href="/dashboard" onClick={closeMobileMenu}>
+                        <Button size="lg" className="w-48 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700">
+                          Dashboard
+                        </Button>
+                      </Link>
+                      <div className="flex justify-center">
+                        <UserButton 
+                          appearance={{
+                            elements: {
+                              avatarBox: "w-12 h-12"
+                            }
+                          }}
+                        />
+                      </div>
+                    </SignedIn>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -197,6 +309,165 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Examples Section */}
+      <section id="examples" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              See the Magic in Action
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Transform ordinary photos into extraordinary Ghibli-style artwork with our AI technology
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Example 1 */}
+            <div className="group">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="relative">
+                  <div className="aspect-square bg-linear-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <MdPhotoCamera className="text-4xl text-slate-400 mb-2 mx-auto" />
+                      <p className="text-sm text-slate-400">Portrait Photo</p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-br from-cyan-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <FaArrowRight className="text-white text-2xl animate-pulse" />
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Portrait → Ghibli Character</h3>
+                  <p className="text-sm text-muted-foreground">Transform portraits into magical Ghibli-style characters with dreamy backgrounds</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Example 2 */}
+            <div className="group">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="relative">
+                  <div className="aspect-square bg-linear-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <MdPhotoCamera className="text-4xl text-slate-400 mb-2 mx-auto" />
+                      <p className="text-sm text-slate-400">Landscape Photo</p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-br from-emerald-500/20 to-teal-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <FaArrowRight className="text-white text-2xl animate-pulse" />
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Landscape → Magical World</h3>
+                  <p className="text-sm text-muted-foreground">Turn ordinary landscapes into enchanted Ghibli-style worlds with floating islands</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Example 3 */}
+            <div className="group">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="relative">
+                  <div className="aspect-square bg-linear-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <MdPhotoCamera className="text-4xl text-slate-400 mb-2 mx-auto" />
+                      <p className="text-sm text-slate-400">Pet Photo</p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-br from-purple-500/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <FaArrowRight className="text-white text-2xl animate-pulse" />
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Pet → Magical Companion</h3>
+                  <p className="text-sm text-muted-foreground">Transform your pets into adorable Ghibli-style magical creatures and companions</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Example 4 */}
+            <div className="group">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="relative">
+                  <div className="aspect-square bg-linear-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <MdPhotoCamera className="text-4xl text-slate-400 mb-2 mx-auto" />
+                      <p className="text-sm text-slate-400">City Photo</p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-br from-orange-500/20 to-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <FaArrowRight className="text-white text-2xl animate-pulse" />
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Urban → Fantasy City</h3>
+                  <p className="text-sm text-muted-foreground">Convert modern cityscapes into fantastical Ghibli-inspired floating cities</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Example 5 */}
+            <div className="group">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="relative">
+                  <div className="aspect-square bg-linear-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <MdPhotoCamera className="text-4xl text-slate-400 mb-2 mx-auto" />
+                      <p className="text-sm text-slate-400">Nature Photo</p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-br from-green-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <FaArrowRight className="text-white text-2xl animate-pulse" />
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Nature → Enchanted Forest</h3>
+                  <p className="text-sm text-muted-foreground">Transform natural scenes into mystical Ghibli-style enchanted forests</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Example 6 */}
+            <div className="group">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="relative">
+                  <div className="aspect-square bg-linear-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <MdPhotoCamera className="text-4xl text-slate-400 mb-2 mx-auto" />
+                      <p className="text-sm text-slate-400">Action Photo</p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-br from-red-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <FaArrowRight className="text-white text-2xl animate-pulse" />
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Action → Epic Adventure</h3>
+                  <p className="text-sm text-muted-foreground">Turn action shots into epic Ghibli-style adventure scenes with dynamic effects</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <SignedOut>
+              <SignUpButton>
+                <Button size="lg" className="bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700">
+                  Try It Free Now
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button size="lg" className="bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700">
+                  Start Creating
+                </Button>
+              </Link>
+            </SignedIn>
           </div>
         </div>
       </section>
@@ -561,8 +832,22 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-linear-to-r from-purple-600/20 to-pink-600/20">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 overflow-hidden">
+        {/* Animated Background Elements - Same as Hero */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-r from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-linear-to-r from-emerald-400/20 to-teal-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-indigo-400/10 to-purple-600/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        {/* Floating Elements - Same as Hero */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-4 h-4 bg-cyan-400 rounded-full animate-bounce delay-300"></div>
+          <div className="absolute top-40 right-20 w-3 h-3 bg-emerald-400 rounded-full animate-bounce delay-700"></div>
+          <div className="absolute bottom-40 left-20 w-5 h-5 bg-indigo-400 rounded-full animate-bounce delay-1000"></div>
+          <div className="absolute bottom-20 right-10 w-3 h-3 bg-teal-400 rounded-full animate-bounce delay-500"></div>
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Transform Your Images?
           </h2>
@@ -607,23 +892,90 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border/40">
+      <footer className="py-16 border-t border-border/40 bg-muted/20">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                <FaImage className="text-white text-sm" />
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+            {/* Column 1 - Brand */}
+            <div className="md:col-span-1">
+              <Link href="/" className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
+                  <FaImage className="text-white text-sm" />
+                </div>
+                <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGeneration</span>
+              </Link>
+              <p className="text-sm text-muted-foreground mb-4">
+                Transform your photos into stunning AI-generated artwork with the power of advanced machine learning.
+              </p>
+              <div className="flex gap-3">
+                <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-cyan-500/20 transition-colors cursor-pointer">
+                  <span className="text-xs">𝕏</span>
+                </div>
+                <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-cyan-500/20 transition-colors cursor-pointer">
+                  <span className="text-xs">in</span>
+                </div>
+                <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-cyan-500/20 transition-colors cursor-pointer">
+                  <span className="text-xs">ig</span>
+                </div>
               </div>
-              <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGeneration</span>
             </div>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-foreground transition-colors">Contact</a>
+
+            {/* Column 2 - Product */}
+            <div>
+              <h3 className="font-semibold mb-4">Product</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#examples" className="hover:text-foreground transition-colors">Examples</a></li>
+                <li><a href="#features" className="hover:text-foreground transition-colors">Features</a></li>
+                <li><a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a></li>
+                <li><a href="/dashboard" className="hover:text-foreground transition-colors">Dashboard</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">API</a></li>
+              </ul>
+            </div>
+
+            {/* Column 3 - Company */}
+            <div>
+              <h3 className="font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Press</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Partners</a></li>
+              </ul>
+            </div>
+
+            {/* Column 4 - Support */}
+            <div>
+              <h3 className="font-semibold mb-4">Support</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Contact Us</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Community</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Status</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Bug Reports</a></li>
+              </ul>
+            </div>
+
+            {/* Column 5 - Legal */}
+            <div>
+              <h3 className="font-semibold mb-4">Legal</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Cookie Policy</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">GDPR</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Licenses</a></li>
+              </ul>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-border/40 text-center text-muted-foreground">
-            <p>&copy; 2024 ImageGeneration. All rights reserved. Powered by GPT-4 Vision.</p>
+
+          {/* Footer Bottom */}
+          <div className="pt-8 border-t border-border/40 flex flex-col md:flex-row items-center justify-between">
+            <div className="text-sm text-muted-foreground mb-4 md:mb-0">
+              <p>&copy; 2025 ImageGeneration. All rights reserved.</p>
+            </div>
+            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <span>Made with ❤️ for creators</span>
+            </div>
           </div>
         </div>
       </footer>
