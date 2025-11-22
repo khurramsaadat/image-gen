@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FaImage, FaTwitter, FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
+import { FaImage, FaLinkedin, FaInstagram, FaGithub, FaFacebook, FaTiktok } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -11,7 +12,7 @@ export default function Footer() {
             <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
               <FaImage className="text-white text-sm" />
             </div>
-            <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGeneration</span>
+            <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGen</span>
           </Link>
           <p className="text-sm text-muted-foreground mb-6 max-w-md">
             Transform your photos into stunning AI-generated artwork with the power of advanced machine learning.
@@ -19,16 +20,22 @@ export default function Footer() {
           
           {/* Social Media Icons */}
           <div className="flex gap-4 mb-8">
-            <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-cyan-500/20 hover:text-cyan-400 transition-all duration-300 cursor-pointer">
-              <FaTwitter className="text-lg" />
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-slate-500/20 hover:text-slate-400 transition-all duration-300 cursor-pointer">
+              <FaXTwitter className="text-lg" />
             </a>
-            <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-300 cursor-pointer">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-300 cursor-pointer">
+              <FaFacebook className="text-lg" />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-blue-600/20 hover:text-blue-600 transition-all duration-300 cursor-pointer">
               <FaLinkedin className="text-lg" />
             </a>
-            <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-pink-500/20 hover:text-pink-400 transition-all duration-300 cursor-pointer">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-pink-500/20 hover:text-pink-400 transition-all duration-300 cursor-pointer">
               <FaInstagram className="text-lg" />
             </a>
-            <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-gray-500/20 hover:text-gray-400 transition-all duration-300 cursor-pointer">
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-red-500/20 hover:text-red-400 transition-all duration-300 cursor-pointer">
+              <FaTiktok className="text-lg" />
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-gray-500/20 hover:text-gray-400 transition-all duration-300 cursor-pointer">
               <FaGithub className="text-lg" />
             </a>
           </div>
@@ -94,7 +101,7 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="pt-8 border-t border-border/40 flex flex-col md:flex-row items-center justify-between">
           <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-            <p>&copy; 2025 ImageGeneration. All rights reserved.</p>
+            <p>&copy; 2025 ImageGen. All rights reserved.</p>
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <span>Made with ❤️ for creators</span>

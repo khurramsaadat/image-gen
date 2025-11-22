@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ImageGeneration - Transform Your Photos with AI Magic",
-  description: "Turn any photo into stunning Ghibli-style artwork or action-packed illustrations. Professional AI image transformation powered by GPT-4 Vision.",
+  title: "ImageGen - Transform Your Photos with AI Magic",
+  description: "Turn any photo into stunning Ghibli-style artwork or action-packed illustrations. Professional AI image transformation.",
 };
 
 export default function RootLayout({

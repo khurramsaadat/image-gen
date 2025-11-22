@@ -103,12 +103,6 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="animate-fade-in-up">
-            <Badge variant="secondary" className="mb-6 bg-linear-to-r from-cyan-500/20 to-blue-500/20 border-cyan-500/30 text-cyan-300 hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300">
-              <MdAutoAwesome className="mr-1 animate-spin-slow" />
-              AI-Powered Transformations
-            </Badge>
-          </div>
           
           <div className="animate-fade-in-up delay-200">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent animate-gradient-x">

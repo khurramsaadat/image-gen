@@ -1,4 +1,4 @@
-# ImageGeneration - AI-Powered Image Transformation SaaS
+# ImageGen - AI-Powered Image Transformation SaaS
 
 Transform your photos into stunning Ghibli-style artwork or action-packed illustrations using GPT-4 Vision technology.
 

@@ -37,7 +37,7 @@ export default function Navbar() {
               <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
                 <FaImage className="text-white text-sm" />
               </div>
-              <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGeneration</span>
+              <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGen</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-6">
@@ -89,8 +89,8 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-50 md:hidden">
-            <div className="fixed inset-0 bg-background backdrop-blur-lg">
+          <div className="fixed inset-0 z-[9999] md:hidden">
+            <div className="fixed inset-0 bg-black">
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
                 <div className="flex items-center justify-between p-4 border-b border-border/40">
@@ -98,7 +98,7 @@ export default function Navbar() {
                     <div className="w-8 h-8 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/25">
                       <FaImage className="text-white text-sm" />
                     </div>
-                    <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGeneration</span>
+                    <span className="text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ImageGen</span>
                   </Link>
                   <button
                     onClick={closeMobileMenu}
